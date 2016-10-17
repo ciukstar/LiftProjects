@@ -8,6 +8,10 @@ class ExampleSpec extends FlatSpec with Matchers {
   "Example" should "have a test!" in {
 
     val r = Example.createRecord.name("Tim").email(Empty)
-    r.validate should not be empty
+    val errs = r.validate
+
+    errs should not be empty
+    errs.map(_.msg).head.text should be ("Must be more than 5 characters")
+
   }
 }

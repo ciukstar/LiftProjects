@@ -8,6 +8,7 @@ lazy val root = (project in file(".")).settings(
   libraryDependencies := {
     val liftVersion = "3.0-RC3"
     Seq(
+      "net.liftweb" %% "lift-squeryl-record" % liftVersion,
       "net.liftweb" %% "lift-record" % liftVersion,
       "org.scalactic" %% "scalactic" % "3.0.0",
       "org.scalatest" %% "scalatest" % "3.0.0" % "test"
