@@ -7,8 +7,9 @@ package code {
 
   class Publisher private () extends Record[Publisher] with KeyedRecord[Long] {
     override def meta = Publisher
+
     @Column(name = "id")
-    override def idField = new LongField(this, 1)
+    override val idField = new LongField(this, 1)
     val name = new StringField(this, "")
   }
 
