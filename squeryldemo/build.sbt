@@ -4,6 +4,7 @@ lazy val root = (project in file(".")).settings(
   version := "0.1.0",
   scalaVersion := "2.11.8",
   name := "squeryldemo",
+  parallelExecution in Test := false,
   libraryDependencies := Seq(
     "org.squeryl" %% "squeryl" % "0.9.7",
     "com.h2database" % "h2" % "1.4.192",
