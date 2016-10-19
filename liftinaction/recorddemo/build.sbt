@@ -10,6 +10,7 @@ lazy val root = (project in file(".")).settings(
     Seq(
       "net.liftweb" %% "lift-squeryl-record" % liftVersion,
       "net.liftweb" %% "lift-record" % liftVersion,
+      "com.h2database" % "h2" % "1.4.192" % "test",
       "org.scalactic" %% "scalactic" % "3.0.0",
       "org.scalatest" %% "scalatest" % "3.0.0" % "test"
     )
