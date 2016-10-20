@@ -1,6 +1,7 @@
-package code {
+package code.library {
 
   import org.squeryl.{ Schema, Session }
+  import code._
   import MyPrimitiveTypeMode._
 
   object Library extends Schema()(MyPrimitiveTypeMode) {

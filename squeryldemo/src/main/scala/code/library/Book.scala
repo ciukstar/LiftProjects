@@ -1,4 +1,4 @@
-package code {
+package code.library {
 
   class Book(
     val id: Long,

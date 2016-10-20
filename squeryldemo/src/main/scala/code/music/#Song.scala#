@@ -1,0 +1,12 @@
+package code {
+
+  import org.squeryl.KeyedEntity
+  import MyPrimitiveTypeMode._
+  import MusicDb._
+
+  class Song(val id: Long, var title: String, var artistId: Long) extends KeyedEntity[Long] {
+    def artist =
+      arti
+      from(MusicDb.artists)(a => where(a.id === artistId) select(a))
+  }
+}

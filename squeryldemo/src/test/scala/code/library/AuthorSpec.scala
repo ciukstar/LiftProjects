@@ -1,15 +1,12 @@
-package code {
+package code.library {
 
   import org.scalatest._
+  import code._
   import MyPrimitiveTypeMode._
   import Library._
 
   class AuthorSpec extends FlatSpec with DatabaseInit
     with Matchers with OneInstancePerTest with BeforeAndAfterAll with BeforeAndAfterEach {
-
-    "foo" should "bar" in {
-      fail("TODO: See how selects work")
-    }
 
     "update(authors)" should "partially update an Author" in {
       val incorrect = "Stanciuc"

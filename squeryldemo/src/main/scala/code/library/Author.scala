@@ -1,4 +1,4 @@
-package code {
+package code.library {
 
   import org.squeryl.KeyedEntity
 
