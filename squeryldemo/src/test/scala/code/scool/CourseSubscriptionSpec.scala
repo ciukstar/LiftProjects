@@ -13,18 +13,24 @@ package code.school {
       inTransaction {
         val subj = new Subject("Subject")
         subjects.insert(subj)
-
-        val c1 = new Course("Course1", subj)
-        val c2 = new Course("Course2", subj)
-
-        val s1 = new Student("FN1", "LN1")
-        val s2 = new Student("FN2", "LN2")
-
-        courses.insert(Seq(c1, c2))
-
+        val c1 = courses.insert(new Course("Course1", subj))
+        val c2 = courses.insert(new Course("Course2", subj))
+        val s1 = students.insert(new Student("FN1", "LN1"))
+        val s2 = students.insert(new Student("FN2", "LN2"))
+        val sub11 = s1.courses.associate(c1)
+        val sub12 = s1.courses.associate(c2)
+        val sub21 = s2.courses.associate(c1)
+        val sub22 = s2.courses.associate(c2)
       }
-      fail("To Be Continued")
 
+      inTransaction {
+       
+        val s1 = from(students)(s => where(s.firstName === "FN1") select(s)).singleOption
+      }
+
+      inTransaction {
+        from(courses)(c => where(c.name === "Course1") select(c)).singleOption
+      }
     }
 
     override def beforeAll(): Unit = {
