@@ -2,5 +2,5 @@ package code {
 
   import org.squeryl.PrimitiveTypeMode
 
-  object MyPrimitiveTypeMode extends PrimitiveTypeMode
+  object PrimitiveTypeMode extends PrimitiveTypeMode
 }

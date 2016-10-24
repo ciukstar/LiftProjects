@@ -1,0 +1,44 @@
+package code {
+
+  import org.scalatest._
+  import scala.math.Ordered
+
+  class PreferredPromtSpec extends FlatSpec with Matchers with OneInstancePerTest {
+
+    def maxListImpParam[T](elements: List[T])(implicit orderer: T => Ordered[T]): T =
+      elements match {
+        case Nil => throw new IllegalArgumentException("empty list!")
+        case List(x) => x
+        case x :: rest =>
+          val maxRest = maxListImpParam(rest)(orderer)
+          if (orderer(x) > orderer(maxRest)) x
+          else maxRest
+      }
+
+    "The last param list of Greeter.greet" should "use implicit val UserPref.promt imported in the scope" in {
+
+      import UserPrefs.promt
+
+      val username = "Bob"
+
+      Greeter.greet(username) should
+        be("Welcome, %s. The system is ready.%n%s".format(username, promt.preference))
+
+    }
+
+    "The last param list of Greeter.greet" should "use implicit val promt declared in the scope" in {
+      val username = "Bob"
+      val promtname = "Yes, master "
+      implicit val promt = new PreferredPromt(promtname)
+
+      Greeter.greet(username) should
+        be("Welcome, %s. The system is ready.%n%s".format(username, promtname))
+
+    }
+
+    "Using all parameter list" should "behave as expected" in {
+      Greeter.greet("Bob")(new PreferredPromt("relax> ")) should
+        be("Welcome, %s. The system is ready.%n%s".format("Bob", "relax> "))
+    }
+  }
+}
